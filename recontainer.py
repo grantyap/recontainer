@@ -10,7 +10,6 @@ from PyQt5.QtWidgets import *
 class Recontainer(QWidget):
 
     def __init__(self):
-
         super().__init__()
 
         self.default_dir = os.path.expanduser('~/Movies')
@@ -49,14 +48,12 @@ class Recontainer(QWidget):
         self.show()
 
     def open_file_dialog(self):
-
         filename = QFileDialog.getOpenFileName(self, "Select .mov", self.default_dir, 'Movie Files (*.mov)')
         if filename:
             self.input_file_path_label.setText(filename[0])  # filename path
             self.output_file_path_label.setText(self.change_extension(filename[0], 'mp4'))
 
     def save_file_dialog(self):
-
         # set default file
         if self.input_file_path_label.text() is not '':
             default_dir = self.change_extension(self.input_file_path_label.text(), 'mp4')
@@ -67,7 +64,6 @@ class Recontainer(QWidget):
 
     @staticmethod
     def change_extension(input_text, extension):
-
         extension_index = 0
         for i in range(0, len(input_text) - 1):  # find the . in the file path
             if input_text[i] == '.':
@@ -77,7 +73,6 @@ class Recontainer(QWidget):
 
     @staticmethod
     def get_parent_directory(input_text):
-
         slash_index = 0
         for i in range(len(input_text) - 1, 0, -1):  # find the last slash in the file path
             if input_text[i] == '/':
@@ -86,7 +81,6 @@ class Recontainer(QWidget):
         return input_text[:slash_index]
 
     def recontain(self):
-
         ff = FFmpeg(
             inputs={self.input_file_path_label.text(): '-y'},
             outputs={self.output_file_path_label.text(): '-c copy'}
@@ -97,22 +91,18 @@ class Recontainer(QWidget):
         call(['open', self.output_file_path_label.text()])
 
     def check_existing_then_recontain(self):
-
         if not QFileInfo.exists(self.output_file_path_label.text()):
             self.recontain()
-
         else:
             result = QMessageBox.warning(self, "File exists",
                                          self.output_file_path_label.text() + " already exists. Overwrite?",
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
-
             if result == QMessageBox.Yes:
                 self.recontain()
             else:
                 return
 
     def center(self):
-
         qr = self.frameGeometry()
         cp = QDesktopWidget().availableGeometry().center()
         qr.moveCenter(cp)
