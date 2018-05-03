@@ -19,32 +19,32 @@ class Recontainer(QWidget):
         self.setMinimumSize(700, 150)
         self.center()
 
-        self.input_file_label = QLabel("<b>Input file:</b>", self)
+        input_file_label = QLabel("<b>Input file:</b>", self)
         self.input_file_path_label = QLabel("", self)
-        self.btn_input_file = QPushButton("Select .mov", self)
-        self.btn_input_file.clicked.connect(self.open_file_dialog)
+        btn_input_file = QPushButton("Select .mov", self)
+        btn_input_file.clicked.connect(self.open_file_dialog)
 
-        self.output_file_label = QLabel("<b>Output file:</b>", self)
+        output_file_label = QLabel("<b>Output file:</b>", self)
         self.output_file_path_label = QLabel("", self)
-        self.btn_output_file = QPushButton("Select output .mp4", self)
-        self.btn_output_file.clicked.connect(self.save_file_dialog)
+        btn_output_file = QPushButton("Select output .mp4", self)
+        btn_output_file.clicked.connect(self.save_file_dialog)
 
-        self.btn_recontain = QPushButton('Recontain', self)
-        self.btn_recontain.clicked.connect(self.check_existing_then_recontain)
+        btn_recontain = QPushButton('Recontain', self)
+        btn_recontain.clicked.connect(self.check_existing_then_recontain)
 
-        self.layout = QGridLayout()
+        layout = QGridLayout()
 
-        self.layout.addWidget(self.input_file_label, 0, 0)
-        self.layout.addWidget(self.input_file_path_label, 1, 0)
-        self.layout.addWidget(self.btn_input_file, 2, 0)
+        layout.addWidget(input_file_label, 0, 0)
+        layout.addWidget(self.input_file_path_label, 1, 0)
+        layout.addWidget(btn_input_file, 2, 0)
 
-        self.layout.addWidget(self.output_file_label, 0, 1)
-        self.layout.addWidget(self.output_file_path_label, 1, 1)
-        self.layout.addWidget(self.btn_output_file, 2, 1)
+        layout.addWidget(output_file_label, 0, 1)
+        layout.addWidget(self.output_file_path_label, 1, 1)
+        layout.addWidget(btn_output_file, 2, 1)
 
-        self.layout.addWidget(self.btn_recontain, 3, 0, 1, 2)
+        layout.addWidget(btn_recontain, 3, 0, 1, 2)
 
-        self.setLayout(self.layout)
+        self.setLayout(layout)
         self.show()
 
     def open_file_dialog(self):
@@ -56,9 +56,9 @@ class Recontainer(QWidget):
     def save_file_dialog(self):
         # set default file
         if self.input_file_path_label.text() is not '':
-            default_dir = self.change_extension(self.input_file_path_label.text(), 'mp4')
+            self.default_dir = self.change_extension(self.input_file_path_label.text(), 'mp4')
 
-        filename = QFileDialog.getSaveFileName(self, "Select .mp4", default_dir, 'MP4 Files (*.mp4)')
+        filename = QFileDialog.getSaveFileName(self, "Select .mp4", self.default_dir, 'MP4 Files (*.mp4)')
         if filename:
             self.output_file_path_label.setText(filename[0])
 
@@ -85,7 +85,6 @@ class Recontainer(QWidget):
             inputs={self.input_file_path_label.text(): '-y'},
             outputs={self.output_file_path_label.text(): '-c copy'}
         )
-        print(ff.cmd)
         ff.run()
         call(['open', self.get_parent_directory(self.output_file_path_label.text())])
         call(['open', self.output_file_path_label.text()])
