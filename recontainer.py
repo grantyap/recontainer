@@ -4,7 +4,8 @@ from subprocess import call
 from PyQt5.QtCore import QFileInfo
 from ffmpy import FFmpeg
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QGridLayout, QFileDialog, QMessageBox, QDesktopWidget, \
+    QApplication
 
 
 class Recontainer(QWidget):
