@@ -86,7 +86,7 @@ class Recontainer(QWidget):
             inputs={self.input_file_path_label.text(): '-y'},
             outputs={self.output_file_path_label.text(): '-c copy'}
         )
-        ff.run()
+        ff.run_async()
         call(['open', self.get_parent_directory(self.output_file_path_label.text())])
         call(['open', self.output_file_path_label.text()])
 
