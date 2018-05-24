@@ -2,7 +2,7 @@ import os
 import sys
 from subprocess import call
 from PyQt5.QtCore import QFileInfo
-from ffmpy import FFmpeg
+from ffmpy3 import FFmpeg
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QWidget, QLabel, QPushButton, QGridLayout, QFileDialog, QMessageBox, QDesktopWidget, \
     QApplication
