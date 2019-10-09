@@ -4,6 +4,9 @@ A Python application that copies data streams through different containers witho
 Recontainer is a lightweight application that simply transfers the data streams of a .mov file to an .mp4 container.
 This app does not alter the data streams, which means that there is virtually zero quality loss!
 
+## Install
+Install dependencies with `pip3 install -r requirements-latest.txt` and run 'recontainer.py'
+
 ## Todo
 - [X] Not use FFmpeg through some weird shell hack, instead using it natively in-app
 - [ ] Not use CLI FFmpeg, instead forcing myself to learn to use libav
