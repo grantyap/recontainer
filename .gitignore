@@ -1,3 +1,4 @@
+.DS_Store
 # ignore venv, should be installed with pip3 install -r [requirements.txt|requirements-latest.txt] --upgrade
 venv/
 
