@@ -5,7 +5,15 @@ Recontainer is a lightweight application that simply transfers the data streams 
 This app does not alter the data streams, which means that there is virtually zero quality loss!
 
 ## Install
-Install dependencies with `pip3 install -r requirements-latest.txt` and run 'recontainer.py'
+Install dependencies with
+```
+pip install -r requirements-latest.txt
+```
+You can run this with `python3 recontainer.py` or you can build an app bundle with
+```
+pyinstaller recontainer.spec
+```
+The app bundle is created in `dist/`
 
 ## Todo
 - [X] Not use FFmpeg through some weird shell hack, instead using it natively in-app
