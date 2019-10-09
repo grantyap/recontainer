@@ -1,0 +1,13 @@
+altgraph
+dill
+ffmpy3
+future
+futures
+greenlet
+macholib
+modulegraph
+pefile
+py2app
+PyInstaller
+PyQt5
+sip
