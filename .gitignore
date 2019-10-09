@@ -1,4 +1,8 @@
 .DS_Store
+build/
+dist/
+__pycache__/
+
 # ignore venv, should be installed with pip3 install -r [requirements.txt|requirements-latest.txt] --upgrade
 venv/
 
